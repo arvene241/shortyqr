@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { NavLinks } from "@/lib/constants/navlinks";
+import { NavLinks } from "@/lib/constants";
 import Link from "next/link";
 import { BiMenu, BiX } from "react-icons/bi";
 

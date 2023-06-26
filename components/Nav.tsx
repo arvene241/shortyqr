@@ -3,9 +3,8 @@
 import useScroll from "@/lib/hooks/useScroll";
 import Wrapper from "./Wrapper";
 import Link from "next/link";
-import { NavLinks } from "@/lib/constants/navlinks";
+import { NavLinks } from "@/lib/constants";
 import NavMobile from "./NavMobile";
-import { Toaster } from 'sonner'
 
 const Nav = () => {
   const scrolled = useScroll(80);
@@ -16,7 +15,6 @@ const Nav = () => {
         scrolled && "border-b border-gray-200 bg-white/75 backdrop-blur-lg"
       }`}
     >
-      <Toaster richColors />
       <Wrapper className="flex items-center justify-between py-4 relative">
         <div className="flex items-center">
           <Link href="/" className="text-2xl font-extrabold text-black">
