@@ -2,11 +2,12 @@ import Nav from "@/components/Nav";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
+import Provider from "@/components/Provider";
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata = {
   title: "Shortyqr",
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${inter.variable}`}>
-        <Nav />
-        {children}
-        <Footer />
+        <Provider>
+          <Nav />
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   );
