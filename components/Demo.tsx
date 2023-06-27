@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FiLink2 } from "react-icons/fi";
 import LoadingDots from "./LoadingDots";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import useLocalStorage from "@/lib/hooks/useLocalStorage";
 import LinkCard from "./LinkCard";
 import { LinkProps } from "@/lib/types";

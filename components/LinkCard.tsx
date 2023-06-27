@@ -2,10 +2,9 @@ import { LinkProps } from "@/lib/types";
 import { getDomain } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { IoQrCodeOutline } from "react-icons/io5";
-import { AiOutlineDelete } from "react-icons/ai";
 import CopyButton from "./CopyButton";
 import DeleteButton from "./DeleteButton";
+import Qrcode from "./Qrcode";
 
 const LinkCard = ({
   data,
@@ -50,9 +49,7 @@ const LinkCard = ({
             {data.original_link}
           </p>
         </div>
-        <button className="group rounded-full bg-gray-100 p-3 transition-all duration-75 hover:scale-105 hover:bg-blue-100 active:scale-95">
-          <IoQrCodeOutline className="text-gray-700 transition-all group-hover:text-blue-800 w-5 h-5" />
-        </button>
+        <Qrcode data={data} />
       </div>
     </li>
   );
