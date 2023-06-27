@@ -8,3 +8,12 @@ export interface LinkProps {
   full_share_link: string;
   original_link: string;
 }
+
+export interface QrCodeProps {
+  data: string;
+  size?: string;
+  color?: string;
+  bgcolor?: string;
+  margin?: number;
+  format?: string;
+}
