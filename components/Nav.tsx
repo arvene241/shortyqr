@@ -11,7 +11,7 @@ const Nav = () => {
 
   return (
     <div
-      className={`sticky top-0 z-50 w-full transition-all ${
+      className={`sticky top-0 z-30 w-full transition-all ${
         scrolled && "border-b border-gray-200 bg-white/75 backdrop-blur-lg"
       }`}
     >

@@ -9,7 +9,7 @@ const NavMobile = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className={`fixed inset-0 z-50 w-full sm:hidden ${toggle ? "" : 'pointer-events-none'}`}>
+    <nav className={`fixed inset-0 z-30 w-full sm:hidden ${toggle ? "" : 'pointer-events-none'}`}>
       <div
         className="absolute right-5 top-5 z-20 cursor-pointer w-7 h-7 pointer-events-auto"
         onClick={() => setToggle(!toggle)}
