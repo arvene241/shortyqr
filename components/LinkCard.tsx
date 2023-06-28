@@ -5,6 +5,7 @@ import Link from "next/link";
 import CopyButton from "./CopyButton";
 import DeleteButton from "./DeleteButton";
 import Qrcode from "./Qrcode";
+import useBreakpoints from "@/lib/hooks/useBreakpoint";
 
 const LinkCard = ({
   data,
@@ -17,6 +18,8 @@ const LinkCard = ({
 }) => {
   const GOOGLE_FAVICON_URL = "https://www.google.com/s2/favicons?domain=";
 
+  const { isMobile } = useBreakpoints();
+
   const domain = getDomain(data.original_link);
   const favicon = GOOGLE_FAVICON_URL + domain + "&sz=256";
 
@@ -24,7 +27,7 @@ const LinkCard = ({
 
   return (
     <li>
-      <div className="flex max-w-md cursor-default items-center justify-between rounded-md border border-gray-200 bg-white p-3 shadow-lg transition-[border-color] hover:border-black active:cursor-grabbing">
+      <div className="flex max-w-md cursor-default items-center min-[450px]:justify-between rounded-md border border-gray-200 bg-white p-3 shadow-lg transition-[border-color] hover:border-black active:cursor-grabbing max-[450px]:gap-2 gap-0">
         <Image
           src={favicon}
           alt={domain}
@@ -44,12 +47,13 @@ const LinkCard = ({
             </Link>
             <CopyButton url={data.full_short_link} />
             <DeleteButton data={data} links={links} setLinks={setLinks} />
+            {isMobile ? <Qrcode data={data} /> : <></>}
           </div>
           <p className="w-72 truncate text-sm text-gray-500">
             {data.original_link}
           </p>
         </div>
-        <Qrcode data={data} />
+        {isMobile ? <></> : <Qrcode data={data} />}
       </div>
     </li>
   );

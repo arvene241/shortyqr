@@ -25,10 +25,13 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
     const res = await fetch(
       `https://api.qrserver.com/v1/create-qr-code/?data=${data.short_link}`
     );
+    const imageBlob = await res.blob()
+    const imageURL = URL.createObjectURL(imageBlob)
+
     setSaving(false);
 
     if (res.ok) {
-      const fetchedQr = res.url;
+      const fetchedQr = imageURL;
       setQr(fetchedQr);
       console.log(fetchedQr);
     } else {
@@ -48,9 +51,9 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
     <>
       <button
         onClick={generateQr}
-        className="group rounded-full bg-gray-100 p-3 transition-all duration-75 hover:scale-105 hover:bg-blue-100 active:scale-95"
+        className="group rounded-full bg-gray-100 max-[450px]:p-1.5 p-3 transition-all duration-75 hover:scale-105 hover:bg-blue-100 active:scale-95"
       >
-        <IoQrCodeOutline className="text-gray-700 transition-all group-hover:text-blue-800 w-5 h-5" />
+        <IoQrCodeOutline className="text-gray-700 transition-all group-hover:text-blue-800" />
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -104,15 +107,15 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
 
                     <button
                       className="flex w-[182px] items-center justify-center gap-2 rounded-md border border-black bg-black px-5 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
-                      onClick={() => downloadQr(qr, "svg")}
+                      onClick={() => downloadQr(qr, "png")}
                     >
                       <HiOutlineDownload />
-                      Export
+                      Download
                     </button>
                     {/* This will be used to prompt downloads. */}
                     <a
                       className="hidden"
-                      download={`shortyqr_${data.code}.svg`}
+                      download={`shortyqr_${data.code}.png`}
                       ref={anchorRef}
                     />
                   </div>

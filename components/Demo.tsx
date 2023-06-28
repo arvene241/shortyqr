@@ -14,6 +14,7 @@ const Demo = () => {
   const [url, setUrl] = useState("");
   const [links, setLinks] = useLocalStorage<LinkProps[]>("links", []);
 
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSaving(true);

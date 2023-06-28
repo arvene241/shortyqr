@@ -37,7 +37,7 @@ const DeleteButton = ({
       onClick={() => setIsDelete(true)}
       className="group rounded-full bg-gray-100 p-1.5 transition-all duration-75 hover:scale-105 hover:bg-red-100 active:scale-95"
     >
-      <AiOutlineDelete className="text-gray-700 transition-all group-hover:text-red-800 w-5 h-5" />
+      <AiOutlineDelete className="text-gray-700 transition-all group-hover:text-red-800" />
     </button>
   );
 };
