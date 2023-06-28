@@ -4,7 +4,6 @@ import useScroll from "@/lib/hooks/useScroll";
 import Wrapper from "./Wrapper";
 import Link from "next/link";
 import { NavLinks } from "@/lib/constants";
-import NavMobile from "./NavMobile";
 
 const Nav = () => {
   const scrolled = useScroll(80);
@@ -42,7 +41,6 @@ const Nav = () => {
             )
           )}
         </div>
-        <NavMobile />
       </Wrapper>
     </div>
   );

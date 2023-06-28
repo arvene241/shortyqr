@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { IoQrCodeOutline } from "react-icons/io5";
+import { IoQrCodeOutline, IoImageOutline } from "react-icons/io5";
+import { HiOutlineDownload } from "react-icons/hi";
 import { LinkProps } from "@/lib/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useRef } from "react";
-import { HiOutlineDownload } from "react-icons/hi";
 import LoadingDots from "./LoadingDots";
-import QrDropdown from "./QrDropdown";
 
 const Qrcode = ({ data }: { data: LinkProps }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,7 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
     setSaving(true);
 
     const res = await fetch(
-      `http://api.qrserver.com/v1/create-qr-code/?data=${data.short_link}`
+      `https://api.qrserver.com/v1/create-qr-code/?data=${data.short_link}`
     );
     setSaving(false);
 
@@ -43,7 +42,7 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
     anchorRef.current.href = url;
     anchorRef.current.download = `${data.code}.${extension}`;
     anchorRef.current.click();
-  }
+  };
 
   return (
     <>
@@ -103,7 +102,13 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
                       )}
                     </div>
 
-                    <QrDropdown qr={qr} downloadQr={() => downloadQr} />
+                    <button
+                      className="flex w-[182px] items-center justify-center gap-2 rounded-md border border-black bg-black px-5 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
+                      onClick={() => downloadQr(qr, "svg")}
+                    >
+                      <HiOutlineDownload />
+                      Export
+                    </button>
                     {/* This will be used to prompt downloads. */}
                     <a
                       className="hidden"
