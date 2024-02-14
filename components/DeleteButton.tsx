@@ -17,21 +17,32 @@ const DeleteButton = ({
   const [deleted, setIsDelete] = useState(false);
 
   useEffect(() => {
-    console.log(deleted)
+    console.log(deleted);
     const deleteLinkCard = () => {
       if (deleted) {
-        toast.success("Link deleted!");
+        try {
+          fetch(`https://api-ssl.bitly.com/v4/bitlinks/${data.id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_BITLY_TOKEN}`,
+            },
+          });
+        } catch (error) {
+          console.log(error);
+          throw new Error("Failed to delete the link");
+        }
 
         if (links && setLinks) {
-          setLinks(links.filter((link) => link.code !== data.code));
+          setLinks(links.filter((link) => link.id !== data.id));
         }
+        toast.success("Link deleted!");
       }
       setIsDelete(false);
     };
 
     return () => deleteLinkCard();
   });
-  
+
   return (
     <button
       onClick={() => setIsDelete(true)}

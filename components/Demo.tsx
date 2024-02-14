@@ -14,20 +14,32 @@ const Demo = () => {
   const [url, setUrl] = useState("");
   const [links, setLinks] = useLocalStorage<LinkProps[]>("links", []);
 
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSaving(true);
 
-    const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
+    const res = await fetch("https://api-ssl.bitly.com/v4/shorten", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_BITLY_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        long_url: url,
+        domain: "bit.ly",
+        group_guid: `${process.env.NEXT_PUBLIC_GUID}`,
+      }),
+    });
     setSaving(false);
+
+    console.log(links)
 
     if (res.ok) {
       const fetchedLink = await res.json();
-      setLinks([...links, fetchedLink.result]);
+      setLinks([...links, fetchedLink]);
       setUrl("");
 
-      navigator.clipboard.writeText(fetchedLink.result.short_link).then(() => {
+      navigator.clipboard.writeText(fetchedLink.link).then(() => {
         toast.success("Copied shortlink to clipboard!");
         console.log("Copied shortlink to clipboard!");
       });
@@ -71,7 +83,7 @@ const Demo = () => {
       </form>
 
       <ul className="mt-3 flex flex-col gap-2">
-        {links.map((link) => (
+        {links && links.map((link) => (
           <LinkCard
             key={links.indexOf(link)}
             data={link}

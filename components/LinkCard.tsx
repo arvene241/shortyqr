@@ -18,9 +18,11 @@ const LinkCard = ({
 }) => {
   const GOOGLE_FAVICON_URL = "https://www.google.com/s2/favicons?domain=";
 
+  console.log(data)
+
   const { isMobile } = useBreakpoints();
 
-  const domain = getDomain(data.original_link);
+  const domain = getDomain(data.long_url);
   const favicon = GOOGLE_FAVICON_URL + domain + "&sz=256";
 
   console.log(GOOGLE_FAVICON_URL + domain);
@@ -39,18 +41,18 @@ const LinkCard = ({
           <div className="mb-1 flex items-center space-x-2">
             <Link
               className="font-semibold text-blue-800"
-              href={data.full_short_link}
+              href={data.link}
               target="_blank"
               rel="noreferrer"
             >
-              {data.short_link}
+              {data.id}
             </Link>
-            <CopyButton url={data.full_short_link} />
+            <CopyButton url={data.link} />
             <DeleteButton data={data} links={links} setLinks={setLinks} />
             {isMobile ? <Qrcode data={data} /> : <></>}
           </div>
           <p className="w-72 truncate text-sm text-gray-500">
-            {data.original_link}
+            {data.long_url}
           </p>
         </div>
         {isMobile ? <></> : <Qrcode data={data} />}
