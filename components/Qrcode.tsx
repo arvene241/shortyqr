@@ -23,7 +23,7 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
     setSaving(true);
 
     const res = await fetch(
-      `https://api.qrserver.com/v1/create-qr-code/?data=${data.short_link}`
+      `https://api.qrserver.com/v1/create-qr-code/?data=${data.link}`
     );
     const imageBlob = await res.blob()
     const imageURL = URL.createObjectURL(imageBlob)
@@ -33,7 +33,6 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
     if (res.ok) {
       const fetchedQr = imageURL;
       setQr(fetchedQr);
-      console.log(fetchedQr);
     } else {
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
@@ -43,7 +42,7 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
   const downloadQr = (url: string, extension: string) => {
     if (!anchorRef.current) return;
     anchorRef.current.href = url;
-    anchorRef.current.download = `${data.code}.${extension}`;
+    anchorRef.current.download = `${data.id}.${extension}`;
     anchorRef.current.click();
   };
 

@@ -32,8 +32,6 @@ const Demo = () => {
     });
     setSaving(false);
 
-    console.log(links)
-
     if (res.ok) {
       const fetchedLink = await res.json();
       setLinks([...links, fetchedLink]);
@@ -41,7 +39,6 @@ const Demo = () => {
 
       navigator.clipboard.writeText(fetchedLink.link).then(() => {
         toast.success("Copied shortlink to clipboard!");
-        console.log("Copied shortlink to clipboard!");
       });
     } else {
       // This will activate the closest `error.js` Error Boundary

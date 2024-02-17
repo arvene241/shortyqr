@@ -17,7 +17,6 @@ const DeleteButton = ({
   const [deleted, setIsDelete] = useState(false);
 
   useEffect(() => {
-    console.log(deleted);
     const deleteLinkCard = () => {
       if (deleted) {
         try {

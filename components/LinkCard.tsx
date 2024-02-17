@@ -18,14 +18,10 @@ const LinkCard = ({
 }) => {
   const GOOGLE_FAVICON_URL = "https://www.google.com/s2/favicons?domain=";
 
-  console.log(data)
-
   const { isMobile } = useBreakpoints();
 
   const domain = getDomain(data.long_url);
   const favicon = GOOGLE_FAVICON_URL + domain + "&sz=256";
-
-  console.log(GOOGLE_FAVICON_URL + domain);
 
   return (
     <li>
