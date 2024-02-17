@@ -114,7 +114,7 @@ const Qrcode = ({ data }: { data: LinkProps }) => {
                     {/* This will be used to prompt downloads. */}
                     <a
                       className="hidden"
-                      download={`shortyqr_${data.code}.png`}
+                      download={`shortyqr_${data.id}.png`}
                       ref={anchorRef}
                     />
                   </div>
